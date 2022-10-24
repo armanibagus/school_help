@@ -1,0 +1,10 @@
+/* ===== Login background ===== */
+.page-header {
+    background-image: url(../../img/bg-edu.jpg);
+    background-position: center;
+}
+
+/* ===== Dropdown ===== */
+:not(.main-content) .navbar .dropdown .dropdown-menu.show{
+  top: 0!important;
+}
