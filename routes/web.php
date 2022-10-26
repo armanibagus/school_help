@@ -22,10 +22,10 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/clear-cache', function () {
-    Artisan::call('cache:clear');
-    Artisan::call('config:cache');
-    Artisan::call('view:clear');
-    return "Cache is cleared";
+  Artisan::call('cache:clear');
+  Artisan::call('config:cache');
+  Artisan::call('view:clear');
+  return "Cache is cleared";
 });
 
 /* ================================ APP ROUTE ================================ */
@@ -34,28 +34,40 @@ Route::get('/clear-cache', function () {
  * Super Admin Route
  */
 Route::group(['namespace' => 'App\Http\Controllers\SuperAdmin', 'middleware' => 'auth'], function() {
-    /**
-     * Dashboard
-     */
-    Route::get('/super-admin/dashboard', 'Dashboard@index')->name('dashboard_super_admin');
+  /**
+   * Dashboard
+   */
+  Route::get('/super-admin/dashboard', 'Dashboard@index')->name('dashboard_super_admin');
+
+  /**
+   * Register school and administrator
+   */
+  // list school
+  Route::get('/super-admin/school', 'RegisterSchoolAdmin@index_school')->name('register_school_admin');
+  // store school
+  Route::post('/super-admin/school/store', 'RegisterSchoolAdmin@store_school')->name('register_school_admin_store');
+  // list administrator
+  Route::get('/super-admin/school/administrator/{id_school}', 'RegisterSchoolAdmin@index_administrator')->name('register_administrator');
+  // store administrator
+  Route::post('/super-admin/school/administrator/store/{id_school}', 'RegisterSchoolAdmin@store_administrator')->name('register_administrator_store');
 });
 
 /**
  * Admin Route
  */
 Route::group(['namespace' => 'App\Http\Controllers\Admin', 'middleware' => 'auth'], function() {
-    /**
-     * Dashboard
-     */
-    Route::get('/admin/dashboard', 'Dashboard@index')->name('dashboard_admin');
+  /**
+   * Dashboard
+   */
+  Route::get('/admin/dashboard', 'Dashboard@index')->name('dashboard_admin');
 });
 
 /**
  * Volunteer Route
  */
 Route::group(['namespace' => 'App\Http\Controllers\Volunteer', 'middleware' => 'auth'], function() {
-    /**
-     * Dashboard
-     */
-    Route::get('/admin/dashboard', 'Dashboard@index')->name('dashboard_volunteer');
+  /**
+   * Dashboard
+   */
+  Route::get('/admin/dashboard', 'Dashboard@index')->name('dashboard_volunteer');
 });

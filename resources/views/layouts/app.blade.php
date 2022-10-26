@@ -28,6 +28,7 @@
 {{--  <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
   <link id="pagestyle" href="{{ asset('assets/css/argon-dashboard.css?v=2.0.4') }}" rel="stylesheet" />
   <link href="{{ asset('css/custom/style.css') }}" rel="stylesheet">
+  @yield('css')
 </head>
 <body>
 <!-- Navbar -->
@@ -48,7 +49,7 @@
           <nav class="navbar navbar-expand-lg blur border-radius-lg top-0 z-index-3 shadow position-absolute mt-4 py-2 start-0 end-0 mx-4">
             <div class="container-fluid">
               <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3" href="{{ url('/') }}">
-                <img class="bg-cover " src="{{ asset('img/logo/mini-logo.png') }}" alt="logo">
+                <img class="bg-cover " src="{{ asset('img/logo/mini-logo.png') }}" alt="Main logo">
                 {{ config('app.name', 'Laravel') }}
               </a>
               <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
@@ -112,13 +113,10 @@
   </main>
   </div>
   <!--   Core JS Files   -->
-  <script src="{{ asset('js/custom/script.js') }}"></script>
   <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
   <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
-  @yield('js')
-{{--  <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>--}}
-{{--  <script src="{{ asset('assets/js/plugins/smooth-scrollbar.min.js') }}"></script>--}}
-  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 {{--  <script src="{{ asset('assets/js/argon-dashboard.min.js?v=2.0.4') }}../"></script>--}}
+{{--  <script src="{{ asset('js/custom/script.js') }}"></script>--}}
+  @yield('js')
 </body>
 </html>
