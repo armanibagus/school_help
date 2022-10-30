@@ -9,6 +9,13 @@ if (win && document.querySelector('#sidenav-scrollbar')) {
 $(document).ready(function () {
   var csrf_token = $('meta[name="csrf-token"]').attr('content');
 
+  /* ===== Handle csrf token mismatch ===== */
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': csrf_token,
+    }
+  });
+
   /* ===== Logout ===== */
   $('.btn-sign-out').click(function (e) {
     e.preventDefault();
@@ -71,5 +78,24 @@ $(document).ready(function () {
     $(':input', this).val('').removeClass('is-invalid');
     $('.invalid-feedback').remove();
     $('label').removeClass('text-danger');
+  });
+
+  /* ===== Toggle Request Type ===== */
+  $('#type-resource').click(function () {
+    $('#input-proposed-datetime').prop('disabled', true).parent('div').addClass('d-none');
+    $('#input-student-level').prop('disabled', true).parent('div').addClass('d-none');
+    $('#input-no-of-student').prop('disabled', true).parent('div').addClass('d-none');
+
+    $('#input-resource-type').prop('disabled', false).parent('div').removeClass('d-none');
+    $('#input-no-of-resource').prop('disabled', false).parent('div').removeClass('d-none');
+  });
+
+  $('#type-tutorial').click(function () {
+    $('#input-proposed-datetime').prop('disabled', false).parent('div').removeClass('d-none');
+    $('#input-student-level').prop('disabled', false).parent('div').removeClass('d-none');
+    $('#input-no-of-student').prop('disabled', false).parent('div').removeClass('d-none');
+
+    $('#input-resource-type').prop('disabled', true).parent('div').addClass('d-none');
+    $('#input-no-of-resource').prop('disabled', true).parent('div').addClass('d-none');
   });
 });

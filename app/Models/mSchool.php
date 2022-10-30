@@ -18,12 +18,9 @@ class mSchool extends Model
     'sch_name',
     'sch_city',
     'sch_address',
-    'created_at',
-    'updated_at',
-    'deleted_at',
   ];
 
-  public function getAdmin() {
+  public function getAdminAttribute() {
     return User::find($this->id_user);
   }
 }

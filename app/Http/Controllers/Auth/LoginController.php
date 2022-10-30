@@ -61,9 +61,9 @@ class LoginController extends Controller
             if (Auth::user()->role_user == 'super_admin') {
                 return redirect()->route('dashboard_super_admin');
             } else if (Auth::user()->role_user == 'admin') {
-                return redirect()->route('dashboard_super_admin');
+                return redirect()->route('dashboard_admin');
             } else if (Auth::user()->role_user == 'volunteer') {
-                return redirect()->route('dashboard_super_admin');
+                return redirect()->route('dashboard_volunteer');
             } else {
                 return abort(404);
             }

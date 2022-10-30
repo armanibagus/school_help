@@ -60,6 +60,13 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin', 'middleware' => 'auth
    * Dashboard
    */
   Route::get('/admin/dashboard', 'Dashboard@index')->name('dashboard_admin');
+
+  /**
+   * Request for assistance
+   */
+  // list
+  Route::get('/admin/assistance', 'Assistance@index')->name('assistance');
+  Route::post('/admin/assistance/store', 'Assistance@store')->name('assistance_store');
 });
 
 /**
@@ -69,5 +76,5 @@ Route::group(['namespace' => 'App\Http\Controllers\Volunteer', 'middleware' => '
   /**
    * Dashboard
    */
-  Route::get('/admin/dashboard', 'Dashboard@index')->name('dashboard_volunteer');
+  Route::get('/volunteer/dashboard', 'Dashboard@index')->name('dashboard_volunteer');
 });

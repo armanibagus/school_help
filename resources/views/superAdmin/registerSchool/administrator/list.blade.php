@@ -50,9 +50,8 @@
           </thead>
           <tbody class="text-sm">
           @for($i=0; $i<count($list_administrator); $i++)
-            @php $no=$i+1; @endphp
             <tr>
-              <td>{{ $no }}</td>
+              <td>{{ $i+1 }}</td>
               <td>{{ $list_administrator[$i]->staff_id }}</td>
               <td>{{ $list_administrator[$i]->full_name }}</td>
               <td>{{ $list_administrator[$i]->position }}</td>

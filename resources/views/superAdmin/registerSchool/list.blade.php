@@ -64,9 +64,8 @@
               </thead>
               <tbody class="text-sm">
               @for($i=0; $i<count($list_school); $i++)
-                @php $no=$i+1; @endphp
                 <tr>
-                  <td>{{ $no }}</td>
+                  <td>{{ $i+1 }}</td>
                   <td>{{ $list_school[$i]->sch_name }}</td>
                   <td>{{ $list_school[$i]->sch_city }}</td>
                   <td>{{ $list_school[$i]->sch_address }}</td>
