@@ -6,14 +6,18 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-5 text-center mx-auto">
-          <h1 class="text-white mb-2 mt-5">Welcome!</h1>
+{{--          <div class="d-flex align-items-center justify-content-center mb-2 mt-5">--}}
+{{--            <img class="d-inline mx-3" src="{{ asset('img/logo/mini-logo.png') }}" alt="Main logo">--}}
+{{--            <h1 class="d-inline text-white ">SchoolHELP</h1>--}}
+{{--          </div>--}}
+          <img class="w-25 mb-3 mt-4" src="{{ asset('img/logo/logo.png') }}" alt="Main logo">
           <p class="text-lead text-white">Sign in with your account and help many children with their education.</p>
         </div>
       </div>
     </div>
   </div>
   <div class="container">
-    <div class="row mt-lg-n10 mt-md-n11 mt-n10 justify-content-center">
+    <div class="row mt-lg-n11 mt-md-n12 mt-n11 justify-content-center">
       <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
         <div class="card z-index-0 shadow-xl">
           <div class="card-body">
@@ -27,8 +31,8 @@
                 <input id="input-username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
                 @error('username')
                 <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                    <strong>{{ $message }}</strong>
+                </span>
                 @enderror
               </div>
               <div class="mb-3">
@@ -36,8 +40,8 @@
                 <input id="input-password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                 @error('password')
                 <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                    <strong>{{ $message }}</strong>
+                </span>
                 @enderror
               </div>
               <div class="form-check">
@@ -49,6 +53,7 @@
               </div>
               <div class="text-center">
                 <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">{{ __('Sign in') }}</button>
+                <p class="text-sm mt-3 mb-0">Don't have an account? <a href="{{ route('register_volunteer') }}" class="text-dark font-weight-bolder">Register now</a></p>
               </div>
             </form>
           </div>

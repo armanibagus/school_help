@@ -72,6 +72,14 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin', 'middleware' => 'auth
 /**
  * Volunteer Route
  */
+Route::group(['namespace' => 'App\Http\Controllers\Volunteer', 'middleware' => 'guest'], function() {
+  /**
+   * Register
+   */
+  Route::get('/register', 'Register@create')->name('register_volunteer');
+  Route::post('/register/store', 'Register@store')->name('store_volunteer');
+});
+
 Route::group(['namespace' => 'App\Http\Controllers\Volunteer', 'middleware' => 'auth'], function() {
   /**
    * Dashboard
