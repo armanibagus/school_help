@@ -2,10 +2,6 @@
 
 @section('css')
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
-  <style>
-
-
-  </style>
 @endsection
 
 @section('js')
@@ -29,7 +25,7 @@
           <button type="button" class="btn btn-primary"
                   data-bs-toggle="modal"
                   data-bs-target="#modal-add-admin">
-            <i class="fas fa-plus"></i>&nbsp;&nbsp; Add Administrator
+            <i class="fas fa-plus"></i>&nbsp;&nbsp; Add
           </button>
         </div>
       </div>
@@ -38,15 +34,15 @@
       <div class="table-responsive">
         <table class="table data-table">
           <thead>
-          <tr class="text-dark">
-            <th width="20">No</th>
-            <th>Staff ID</th>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Email</th>
-            <th>Phone Number</th>
-            <th width="100">Action</th>
-          </tr>
+            <tr class="text-dark">
+              <th width="20">No</th>
+              <th>Staff ID</th>
+              <th>Name</th>
+              <th>Position</th>
+              <th>Email</th>
+              <th>Phone Number</th>
+              <th width="100">Action</th>
+            </tr>
           </thead>
           <tbody class="text-sm">
           @for($i=0; $i<count($list_administrator); $i++)

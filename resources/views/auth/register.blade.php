@@ -13,7 +13,7 @@
     </div>
   </div>
   <div class="container">
-    <div class="row mt-lg-n11 mt-md-n12 mt-n11 justify-content-center">
+    <div class="row mt-lg-n11 mt-md-n12 mt-n11 mb-5 justify-content-center">
       <div class="col-md-6">
         <div class="card z-index-0 shadow-xl">
           <div class="card-body">
@@ -66,8 +66,8 @@
 
                     @error('email')
                     <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
+                        <strong>{{ $message }}</strong>
+                    </span>
                     @enderror
                   </div>
                 </div>
@@ -78,8 +78,8 @@
 
                     @error('phone_number')
                     <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
+                        <strong>{{ $message }}</strong>
+                    </span>
                     @enderror
                   </div>
                 </div>

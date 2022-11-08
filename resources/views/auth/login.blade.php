@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg">
+  <div class="page-header align-items-start min-vh-50 pt-7 pb-11 m-3 border-radius-lg">
     <span class="mask bg-gradient-dark opacity-6"></span>
     <div class="container">
       <div class="row justify-content-center">

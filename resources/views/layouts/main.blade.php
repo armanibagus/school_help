@@ -69,7 +69,7 @@
               </a>
               <ul class="dropdown-menu dropdown-menu-end px-2 pt-3" aria-labelledby="dropdownMenuButton">
                 <li class="mb-2">
-                  <a class="dropdown-item border-radius-md" href="javascript:;">
+                  <a class="dropdown-item border-radius-md" href="{{ route('profile_edit', \Illuminate\Support\Facades\Crypt::encrypt(Auth::user()->id_user)) }}">
                     <div class="d-flex py-1">
                       <div class="my-auto">
                         <i class="ni ni-single-02 me-sm-2"></i>
@@ -106,6 +106,10 @@
 
     </div>
   </main>
+
+  <!-- modal -->
+  <div id="modal-container"></div>
+
   <!--   Core JS Files   -->
   <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
   <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>

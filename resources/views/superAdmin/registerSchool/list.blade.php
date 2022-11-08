@@ -2,26 +2,6 @@
 
 @section('css')
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
-  <style>
-    .table> :not(:last-child)> :last-child>* {
-      border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-    }
-    .table> :not(caption)>*>* {
-      border-bottom-color: #e9ecef;
-    }
-    .dataTables_info, .dataTables_paginate {
-      padding-top: 1rem!important;
-      font-size: 0.75rem !important;
-    }
-    .paginate_button {
-      border-radius: 5px !important;
-      padding: 0.3em 0.8em !important;
-    }
-    span > a.paginate_button {
-      border-radius: 50% !important;
-    }
-
-  </style>
 @endsection
 
 @section('js')
@@ -45,7 +25,7 @@
               <button type="button" class="btn btn-primary"
                       data-bs-toggle="modal"
                       data-bs-target="#modal-register-school">
-                <i class="fas fa-plus"></i>&nbsp;&nbsp; Register School
+                <i class="fas fa-plus"></i>&nbsp;&nbsp; Register
               </button>
             </div>
           </div>

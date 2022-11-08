@@ -2,35 +2,16 @@
 
 @section('css')
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
-  <style>
-    .table> :not(:last-child)> :last-child>* {
-      border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-    }
-    .table> :not(caption)>*>* {
-      border-bottom-color: #e9ecef;
-    }
-    .dataTables_info, .dataTables_paginate {
-      padding-top: 1rem!important;
-      font-size: 0.75rem !important;
-    }
-    .paginate_button {
-      border-radius: 5px !important;
-      padding: 0.3em 0.8em !important;
-    }
-    span > a.paginate_button {
-      border-radius: 50% !important;
-    }
-
-  </style>
 @endsection
 
 @section('js')
-  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+  <script type="text/javascript" charset="utf8"
+          src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 @endsection
 
 @section('content')
   {{-- modal create school --}}
-  @include('admin.assistance.create')
+  @include('admin.request.create')
 
   <div class="card mb-4">
     <div class="card-header pb-0">
@@ -65,34 +46,39 @@
           </thead>
           <tbody class="text-sm">
           @for($i=0; $i<count($list_requests); $i++)
+            @php
+              $id_request = \Illuminate\Support\Facades\Crypt::encrypt($list_requests[$i]->id_request);
+            @endphp
             <tr>
               <td>{{ $i+1 }}</td>
               <td>{{ $list_requests[$i]->admin->full_name }}</td>
-              <td>{{ $list_requests[$i]->ast_description }}</td>
-              <td>{{ $list_requests[$i]->ast_type }}</td>
-              <td>{{ $list_requests[$i]->ast_status }}</td>
-              <td class="d-flex justify-content-between mx-2">
-                <a class="text-center"
-{{--                   href="{{ route('request_assistance_detail', ['id_assistance' => \Illuminate\Support\Facades\Crypt::encrypt($list_requests[$i]->id_assistance)]) }}"--}}
+              <td>{{ $list_requests[$i]->req_description }}</td>
+              <td>{{ $list_requests[$i]->req_type }}</td>
+              <td>{{ $list_requests[$i]->req_status }}</td>
+              <td class="d-flex justify-content-evenly">
+                <a class="text-center mx-2"
+                   href="{{ route('request_detail', ['id_request' => $id_request]) }}"
                    data-bs-toggle="tooltip"
                    data-bs-placement="bottom"
-                   title="Request Detail">
-                  <i class="fa fa-info text-dark"></i>
+                   title="View Details">
+                  <i class="fa fa-file-text-o text-dark"></i>
                 </a>
-                <a class="text-center"
+                <a class="text-center mx-2"
                    href="javascript:;"
                    data-bs-toggle="tooltip"
                    data-bs-placement="bottom"
-                   title="Edit Request">
+                   title="Edit">
                   <i class="fa fa-edit text-primary"></i>
                 </a>
-                <a class="text-center"
-                   href="javascript:;"
-                   data-bs-toggle="tooltip"
-                   data-bs-placement="bottom"
-                   title="Delete Request">
-                  <i class="fa fa-trash text-danger"></i>
-                </a>
+                @if($list_requests[$i]->req_status == 'new')
+                  <a class="text-center mx-2"
+                     href="{{ route('request_close', ['id_request' => $id_request]) }}"
+                     data-bs-toggle="tooltip"
+                     data-bs-placement="bottom"
+                     title="Close">
+                    <i class="fa fa-times text-danger"></i>
+                  </a>
+                @endif
               </td>
             </tr>
           @endfor

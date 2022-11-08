@@ -8,7 +8,7 @@
         <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">&times;</button>
       </div>
       <form method="POST"
-            action="{{ route('assistance_store') }}"
+            action="{{ route('request_store') }}"
             accept-charset="utf-8"
             enctype="multipart/form-data">
         @csrf

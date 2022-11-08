@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\SuperAdmin;
 
 use App\Http\Controllers\Controller;
-use App\Models\mSchool;
+use App\Models\School;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 class RegisterSchoolAdmin extends Controller
 {
     public function index_school() {
-      $list_school = mSchool::all();
+      $list_school = School::all();
       $data = ['list_school' => $list_school,];
       return view('superAdmin/registerSchool/list', $data);
     }
@@ -35,7 +35,7 @@ class RegisterSchoolAdmin extends Controller
           'sch_city' => $request['city'],
           'sch_address' => $request['address'],
         ];
-        mSchool::create($data_new_school);
+        School::create($data_new_school);
       }
     }
 

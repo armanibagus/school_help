@@ -29,6 +29,14 @@ Route::get('/clear-cache', function () {
 });
 
 /* ================================ APP ROUTE ================================ */
+/**
+ * Edit user profile
+ */
+Route::group(['namespace' => 'App\Http\Controllers\General', 'middleware' => 'auth'], function() {
+  Route::get('profile/{id_user}', 'Profile@edit')->name('profile_edit');
+  Route::post('profile/update/{id_user}', 'Profile@update')->name('profile_update');
+});
+
 
 /**
  * Super Admin Route
@@ -65,8 +73,16 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin', 'middleware' => 'auth
    * Request for assistance
    */
   // list
-  Route::get('/admin/assistance', 'Assistance@index')->name('assistance');
-  Route::post('/admin/assistance/store', 'Assistance@store')->name('assistance_store');
+  Route::get('/admin/request', 'AssistanceRequests@index')->name('request');
+  Route::post('/admin/request/store', 'AssistanceRequests@store')->name('request_store');
+  Route::get('/admin/request/close/{id_request}', 'AssistanceRequests@close')->name('request_close');
+
+  /**
+   * Assistance detail
+   */
+  // list
+  Route::get('/admin/request/detail/{id_request}', 'AssistanceRequests@detail')->name('request_detail');
+  Route::get('/admin/request/detail/accept/{id_offer}', 'AssistanceRequests@accept_offer')->name('request_accept_offer');
 });
 
 /**
@@ -85,4 +101,13 @@ Route::group(['namespace' => 'App\Http\Controllers\Volunteer', 'middleware' => '
    * Dashboard
    */
   Route::get('/volunteer/dashboard', 'Dashboard@index')->name('dashboard_volunteer');
+
+  /**
+   * Offer
+   */
+  // list
+  Route::get('/volunteer/assistance-requests', 'AssistanceRequests@index')->name('assistance_request');
+  // create and store
+  Route::get('/volunteer/assistance-requests/create-offer/{id_request}', 'AssistanceRequests@create_offer')->name('assistance_request_create_offer');
+  Route::post('/volunteer/assistance-requests/store-offer/{id_request}', 'AssistanceRequests@store_offer')->name('assistance_request_store_offer');
 });

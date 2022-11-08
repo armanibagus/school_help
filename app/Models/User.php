@@ -53,4 +53,10 @@ class User extends Authenticatable
   protected $casts = [
     'email_verified_at' => 'datetime',
   ];
+
+  public function getAgeAttribute()
+  {
+    $year = date_diff(date_create($this->date_of_birth), date_create('today'))->y;
+    return $year > 1 ? $year.' years old' : $year.' year old';
+  }
 }
