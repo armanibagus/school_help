@@ -54,9 +54,15 @@ class User extends Authenticatable
     'email_verified_at' => 'datetime',
   ];
 
+  public function getSchoolAttribute()
+  {
+    return School::find($this->id_school);
+  }
+
   public function getAgeAttribute()
   {
     $year = date_diff(date_create($this->date_of_birth), date_create('today'))->y;
-    return $year > 1 ? $year.' years old' : $year.' year old';
+//    return $year > 1 ? $year.' years old' : $year.' year old';
+    return $year;
   }
 }

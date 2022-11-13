@@ -11,7 +11,7 @@
 
 @section('content')
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-8 mb-4">
       <div class="card">
         <div class="card-header pb-0">
           <h4>
@@ -159,46 +159,33 @@
             </div>
           </div>
         </div>
-        <div class="card-header text-center border-0 pt-0 pt-lg-2 pb-4 pb-lg-3">
-          <div class="d-flex justify-content-between">
-            <a href="javascript:;" class="btn btn-sm btn-info mb-0 d-none d-lg-block">Connect</a>
-            <a href="javascript:;" class="btn btn-sm btn-info mb-0 d-block d-lg-none"><i class="ni ni-collection"></i></a>
-            <a href="javascript:;" class="btn btn-sm btn-dark float-right mb-0 d-none d-lg-block">Message</a>
-            <a href="javascript:;" class="btn btn-sm btn-dark float-right mb-0 d-block d-lg-none"><i class="ni ni-email-83"></i></a>
-          </div>
-        </div>
         <div class="card-body pt-0">
-          <div class="row">
-            <div class="col">
-              <div class="d-flex justify-content-center">
-                <div class="d-grid text-center">
-                  <span class="text-lg font-weight-bolder">22</span>
-                  <span class="text-sm opacity-8">Friends</span>
-                </div>
-                <div class="d-grid text-center mx-4">
-                  <span class="text-lg font-weight-bolder">10</span>
-                  <span class="text-sm opacity-8">Photos</span>
-                </div>
-                <div class="d-grid text-center">
-                  <span class="text-lg font-weight-bolder">89</span>
-                  <span class="text-sm opacity-8">Comments</span>
-                </div>
-              </div>
-            </div>
-          </div>
           <div class="text-center mt-4">
-            <h5>
-              Mark Davis<span class="font-weight-light">, 35</span>
+            <h5 class="text-capitalize">
+              {{ Auth::user()->full_name }}
+              @if(Auth::user()->role_user == "volunteer")
+                <span class="font-weight-light">, {{ Auth::user()->age }}</span>
+              @endif
             </h5>
-            <div class="h6 font-weight-300">
-              <i class="ni location_pin mr-2"></i>Bucharest, Romania
+            <div class="text-sm">
+              {{ Auth::user()->email }}
+              <br>
+              {{ Auth::user()->phone_number }}
             </div>
+            @if(Auth::user()->role_user == "admin" || Auth::user()->role_user == "super_admin")
             <div class="h6 mt-4">
-              <i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer
+              {{ Auth::user()->staff_id }} - {{ Auth::user()->position }}
             </div>
+            @if(Auth::user()->role_user == "admin")
             <div>
-              <i class="ni education_hat mr-2"></i>University of Computer Science
+              {{ Auth::user()->school->sch_name }}
             </div>
+            @endif
+            @elseif(Auth::user()->role_user == "volunteer")
+              <div class="h6 mt-4 text-capitalize">
+                {{ Auth::user()->occupation }}
+              </div>
+            @endif
           </div>
         </div>
       </div>

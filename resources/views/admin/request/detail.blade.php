@@ -81,13 +81,14 @@
           @for($i=0; $i<count($list_offers); $i++)
             @php
               $id_offer = \Illuminate\Support\Facades\Crypt::encrypt($list_offers[$i]->id_offer);
+              $year = $list_offers[$i]->user->age;
             @endphp
             <tr>
               <td>{{ $i+1 }}</td>
               <td>{{ $list_offers[$i]->created_at }}</td>
               <td>{{ $list_offers[$i]->ofr_remarks }}</td>
               <td>{{ $list_offers[$i]->user->full_name }}</td>
-              <td>{{ $list_offers[$i]->user->age }}</td>
+              <td>{{ $year > 1 ? $year.' years old' : $year.' year old' }}</td>
               <td>{{ $list_offers[$i]->user->occupation }}</td>
               <td class="d-flex justify-content-evenly">
                 <a class="text-center"

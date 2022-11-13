@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 
 class Profile extends Controller
 {
@@ -39,6 +40,26 @@ class Profile extends Controller
       $rules['occupation'] = 'bail|required|string|max:255';
     }
     $request->validate($rules);
+
+    $data_update_user = [
+      'full_name' => $request['full_name'],
+      'phone_number' => $request['phone_number'],
+    ];
+
+    if (!empty($request['password'])) {
+      $data_update_user['password'] = Hash::make($request['password']);
+    } else if($request['email'] != $user->email) {
+      $data_update_user['email'] = $request['email'];
+    }
+
+    if ($user->role_user == "admin") {
+      $data_update_user['staff_id'] = $request['staff_id'];
+      $data_update_user['position'] = $request['position'];
+    } else if ($user->role_user == "volunteer") {
+      $data_update_user['date_of_birth'] = $request['date_of_birth'];
+      $data_update_user['occupation'] = $request['occupation'];
+    }
+    $user->update($data_update_user);
 
     return redirect()->back();
   }

@@ -33,7 +33,9 @@ Route::get('/clear-cache', function () {
  * Edit user profile
  */
 Route::group(['namespace' => 'App\Http\Controllers\General', 'middleware' => 'auth'], function() {
+  // edit
   Route::get('profile/{id_user}', 'Profile@edit')->name('profile_edit');
+  // update
   Route::post('profile/update/{id_user}', 'Profile@update')->name('profile_update');
 });
 
