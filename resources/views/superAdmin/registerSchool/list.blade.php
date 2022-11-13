@@ -49,7 +49,7 @@
                   <td>{{ $list_school[$i]->sch_name }}</td>
                   <td>{{ $list_school[$i]->sch_city }}</td>
                   <td>{{ $list_school[$i]->sch_address }}</td>
-                  <td class="d-flex justify-content-between mx-2">
+                  <td class="d-flex justify-content-evenly mx-2">
                     <a class="text-center"
                       href="{{ route('register_administrator', ['id_school' => \Illuminate\Support\Facades\Crypt::encrypt($list_school[$i]->id_school)]) }}"
                        data-bs-toggle="tooltip"
@@ -63,13 +63,6 @@
                        data-bs-placement="bottom"
                        title="Edit School">
                       <i class="fa fa-edit text-primary"></i>
-                    </a>
-                    <a class="text-center"
-                       href="javascript:;"
-                       data-bs-toggle="tooltip"
-                       data-bs-placement="bottom"
-                       title="Delete School">
-                      <i class="fa fa-trash text-danger"></i>
                     </a>
                   </td>
                 </tr>

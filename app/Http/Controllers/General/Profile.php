@@ -5,14 +5,30 @@ namespace App\Http\Controllers\General;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 
 class Profile extends Controller
 {
-  public function edit($id_user) {
-    $id_user = Crypt::decrypt($id_user);
-    $data = ['user' => User::find($id_user)];
+  public function edit() {
+    // data
+    $id_user = Auth::user()->id_user;
+    // breadcrumb
+    $breadcrumb = [
+      [
+        'name' => 'Dashboard',
+        'route' => route('dashboard_super_admin')
+      ],
+      [
+        'name' => 'Profile',
+        'route' => route('profile_edit')
+      ]
+    ];
+
+    $data = array_merge(Data::data($breadcrumb), [
+      'user' => User::find($id_user)
+    ]);
     return view('general/profile', $data);
   }
 

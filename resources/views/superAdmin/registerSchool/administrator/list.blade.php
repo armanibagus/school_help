@@ -41,7 +41,6 @@
               <th>Position</th>
               <th>Email</th>
               <th>Phone Number</th>
-              <th width="100">Action</th>
             </tr>
           </thead>
           <tbody class="text-sm">
@@ -53,22 +52,6 @@
               <td>{{ $list_administrator[$i]->position }}</td>
               <td>{{ $list_administrator[$i]->email }}</td>
               <td>{{ $list_administrator[$i]->phone_number }}</td>
-              <td class="d-flex justify-content-between mx-4">
-                <a class="text-center"
-                   href="javascript:;"
-                   data-bs-toggle="tooltip"
-                   data-bs-placement="bottom"
-                   title="Edit Administrator">
-                  <i class="fa fa-edit text-primary"></i>
-                </a>
-                <a class="text-center"
-                   href="javascript:;"
-                   data-bs-toggle="tooltip"
-                   data-bs-placement="bottom"
-                   title="Delete Administrator">
-                  <i class="fa fa-trash text-danger"></i>
-                </a>
-              </td>
             </tr>
           @endfor
           </tbody>

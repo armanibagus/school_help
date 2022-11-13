@@ -23,4 +23,9 @@ class School extends Model
   public function getAdminAttribute() {
     return User::find($this->id_user);
   }
+
+  public function getTotalAdministratorAttribute()
+  {
+    return User::where(['id_school'=>$this->id_school])->count();
+  }
 }

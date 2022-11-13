@@ -27,3 +27,10 @@
 span > a.paginate_button {
   border-radius: 50% !important;
 }
+
+/* ===== Sidenav bg white ===== */
+@media screen and (min-device-width: 1200px){
+  #sidenav-main {
+    background-color: #fff!important;
+  }
+}

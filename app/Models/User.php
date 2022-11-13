@@ -59,6 +59,11 @@ class User extends Authenticatable
     return School::find($this->id_school);
   }
 
+  public function getTotalRequestsAttribute()
+  {
+    return mRequest::where('id_user',$this->id_user)->count();
+  }
+
   public function getAgeAttribute()
   {
     $year = date_diff(date_create($this->date_of_birth), date_create('today'))->y;
