@@ -10,15 +10,16 @@ use Illuminate\Queue\SerializesModels;
 class InformationEmail extends Mailable
 {
     use Queueable, SerializesModels;
+    protected $message;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($message)
     {
-        //
+        $this->message = $message;
     }
 
     /**
@@ -28,6 +29,8 @@ class InformationEmail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('admin.request.emailConfirmation');
+        return $this->markdown('admin.request.emailConfirmation')
+                    ->subject('SchoolHELP: Accepted Request')
+                    ->with('message', $this->message);
     }
 }

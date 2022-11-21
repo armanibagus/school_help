@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\General\Data;
+use App\Mail\InformationEmail;
 use App\Models\mRequest;
 use App\Models\Offer;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class AssistanceRequests extends Controller
@@ -191,7 +194,18 @@ class AssistanceRequests extends Controller
 
   public function accept_offer($id_offer) {
     $id_offer = Crypt::decrypt($id_offer);
-    Offer::where('id_offer',$id_offer)->update(['ofr_status' => 'accepted']);
+    $offer = Offer::find($id_offer);
+    $offer->update(['ofr_status' => 'accepted']);
+    // Notification
+    $volunteer = $offer->user;
+    $admin = Auth::user();
+    $message = [
+      'id' => $offer->id_offer,
+      'date' => $offer->created_at,
+      'remarks' => $offer->ofr_remarks,
+    ];
+    Mail::to($volunteer->email)->send(new InformationEmail($message));
+    Mail::to($admin->email)->send(new InformationEmail($message));
     return redirect()->back();
   }
 }
