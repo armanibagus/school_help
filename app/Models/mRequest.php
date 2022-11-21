@@ -36,6 +36,11 @@ class mRequest extends Model
     return User::find($this->id_user);
   }
 
+  public function getTotalOfferAttribute()
+  {
+    return Offer::where('id_request', $this->id_request)->count();
+  }
+
   public function getProposedDateTimeAttribute()
   {
     return date('d F Y H:i:s', strtotime($this->req_proposed_datetime));

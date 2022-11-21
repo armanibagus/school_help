@@ -44,6 +44,9 @@
               </thead>
               <tbody class="text-sm">
               @for($i=0; $i<count($list_school); $i++)
+                @php
+                  $id_school = \Illuminate\Support\Facades\Crypt::encrypt($list_school[$i]->id_school);
+                @endphp
                 <tr>
                   <td>{{ $i+1 }}</td>
                   <td>{{ $list_school[$i]->sch_name }}</td>
@@ -51,14 +54,15 @@
                   <td>{{ $list_school[$i]->sch_address }}</td>
                   <td class="d-flex justify-content-evenly mx-2">
                     <a class="text-center"
-                      href="{{ route('register_administrator', ['id_school' => \Illuminate\Support\Facades\Crypt::encrypt($list_school[$i]->id_school)]) }}"
+                      href="{{ route('register_administrator', ['id_school' => $id_school]) }}"
                        data-bs-toggle="tooltip"
                        data-bs-placement="bottom"
                        title="School Administrator">
                       <i class="fa fa-user text-dark"></i>
                     </a>
-                    <a class="text-center"
-                       href="javascript:;"
+                    <a class="text-center btn-modal"
+                       href="#"
+                       data-route="{{ route('edit_school', ['id_school' => $id_school]) }}"
                        data-bs-toggle="tooltip"
                        data-bs-placement="bottom"
                        title="Edit School">

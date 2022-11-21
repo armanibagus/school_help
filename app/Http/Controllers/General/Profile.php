@@ -13,21 +13,35 @@ class Profile extends Controller
 {
   public function edit() {
     // data
-    $id_user = Auth::user()->id_user;
+    $user = Auth::user();
     // breadcrumb
-    $breadcrumb = [
-      [
+    if ($user->role_user == "super_admin")
+      $breadcrumb = [[
         'name' => 'Dashboard',
         'route' => route('dashboard_super_admin')
-      ],
+      ]];
+    else if ($user->role_user == "admin")
+      $breadcrumb = [[
+        'name' => 'Dashboard',
+        'route' => route('dashboard_admin')
+      ]];
+    else if ($user->role_user == "volunteer")
+      $breadcrumb = [[
+        'name' => 'Dashboard',
+        'route' => route('dashboard_volunteer')
+      ]];
+    else
+      $breadcrumb = [];
+
+    $breadcrumb = array_merge($breadcrumb, [
       [
         'name' => 'Profile',
         'route' => route('profile_edit')
       ]
-    ];
+    ]);
 
     $data = array_merge(Data::data($breadcrumb), [
-      'user' => User::find($id_user)
+      'user' => User::find($user->id_user)
     ]);
     return view('general/profile', $data);
   }

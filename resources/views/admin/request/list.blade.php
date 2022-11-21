@@ -18,8 +18,8 @@
       <div class="row">
         <div class="col-6 d-flex align-items-center">
           <h4>
-            <i class="fa fa-handshake-o me-3"></i>
-            <small>Assistance Requests</small>
+            <i class="fa fa-file-text-o me-3"></i>
+            <small>Requests</small>
           </h4>
         </div>
         <div class="col-6 text-end">
@@ -53,8 +53,16 @@
               <td>{{ $i+1 }}</td>
               <td>{{ $list_requests[$i]->admin->full_name }}</td>
               <td>{{ $list_requests[$i]->req_description }}</td>
-              <td>{{ $list_requests[$i]->req_type }}</td>
-              <td>{{ $list_requests[$i]->req_status }}</td>
+              <td class="align-middle text-center text-sm">
+                <span class="badge badge-sm w-100 {{ $list_requests[$i]->req_type == 'tutorial' ? 'bg-primary' : 'bg-secondary' }}">
+                  {{ $list_requests[$i]->req_type }}
+                </span>
+              </td>
+              <td class="align-middle text-center text-sm">
+                <span class="badge badge-sm w-100 {{ $list_requests[$i]->req_status == 'new' ? 'bg-gradient-success' : 'bg-gradient-danger' }}">
+                  {{ $list_requests[$i]->req_status }}
+                </span>
+              </td>
               <td class="d-flex justify-content-evenly">
                 <a class="text-center mx-2"
                    href="{{ route('request_detail', ['id_request' => $id_request]) }}"
@@ -63,11 +71,12 @@
                    title="View Details">
                   <i class="fa fa-file-text-o text-dark"></i>
                 </a>
-                <a class="text-center mx-2"
+                <a class="text-center mx-2 btn-modal"
                    href="javascript:;"
+                   data-route="{{ route('request_edit', ['id_request' => $id_request]) }}"
                    data-bs-toggle="tooltip"
                    data-bs-placement="bottom"
-                   title="Edit">
+                   title="Edit Request">
                   <i class="fa fa-edit text-primary"></i>
                 </a>
                 @if($list_requests[$i]->req_status == 'new')

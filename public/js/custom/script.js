@@ -28,9 +28,6 @@ $(document).ready(function () {
     $('#logout-form').submit();
   });
 
-  /* ===== Datatable ===== */
-  $('.data-table').DataTable();
-
   /* ===== Modal form submit ===== */
   modal_form_validation();
 
@@ -77,6 +74,25 @@ $(document).ready(function () {
       }
     });
   });
+
+  /* ===== btn-delete ===== */
+  $('.btn-delete').click(function (e) {
+    e.preventDefault();
+
+    $.ajax({
+      url: $(this).attr('href'),
+      type: 'delete',
+      data: {
+        _token: csrf_token,
+      },
+      success: function (data) {
+        window.location.reload();
+      }
+    });
+  });
+
+  /* ===== Datatable ===== */
+  $('.data-table').DataTable();
 });
 
 function modal_form_validation() {

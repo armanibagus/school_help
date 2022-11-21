@@ -59,6 +59,36 @@ class RegisterSchoolAdmin extends Controller
     }
   }
 
+  public function edit_school($id_school) {
+    $id_school = Crypt::decrypt($id_school);
+    $data = [
+      'edit' => School::find($id_school),
+    ];
+    return view('superAdmin/registerSchool/edit', $data);
+  }
+
+  public function update_school(Request $request, $id_school) {
+    $data_validation = Validator::make($request->all(), [
+      'school_name' => 'bail|required|string|max:255',
+      'city' => 'bail|required|string|max:255',
+      'address' => 'bail|required|string|max:255',
+    ]);
+
+    // validate the input and return errors using
+    // json response with status 200
+    if ($data_validation->fails()) {
+      return response()->json($data_validation->errors());
+    } else {
+      $id_school = Crypt::decrypt($id_school);
+      $data_update_school = [
+        'sch_name' => $request['school_name'],
+        'sch_city' => $request['city'],
+        'sch_address' => $request['address'],
+      ];
+      School::find($id_school)->update($data_update_school);
+    }
+  }
+
   public function index_administrator($id_school) {
     $list_administrator = User::where([
       'id_school' => Crypt::decrypt($id_school),

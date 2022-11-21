@@ -36,7 +36,8 @@ class Dashboard extends Controller
     // total per month this year
     $total_school_last_12_month = [];
     for ($i=1; $i<=12; $i++) {
-      $total_school_last_12_month[$i] = School::whereMonth('created_at', $i)->count();
+      $total_school_last_12_month[$i] = School::whereYear('created_at', date('Y'))
+                                              ->whereMonth('created_at', $i)->count();
     }
 
     $data = array_merge(Data::data($breadcrumb), [

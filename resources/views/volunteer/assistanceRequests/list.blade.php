@@ -40,14 +40,14 @@
               <td>{{ $list_requests[$i]->school->sch_name }}</td>
               <td>{{ $list_requests[$i]->school->sch_city }}</td>
               <td>{{ $list_requests[$i]->req_description }}</td>
-              <td class="d-flex justify-content-between mx-4">
-                <a class="text-center"
+              <td class="d-flex justify-content-evenly">
+                <a class="text-center btn-modal"
                    href="javascript:;"
-                   data-route="#"
+                   data-route="{{ route('assistance_request_detail_request', ['id_request' => $id_request]) }}"
                    data-bs-toggle="tooltip"
                    data-bs-placement="bottom"
                    title="View Details">
-                  <i class="fa fa-file-text-o text-secondary"></i>
+                  <i class="fa fa-info-circle text-black-50"></i>
                 </a>
                 <a class="text-center btn-modal"
                    href="javascript:;"

@@ -19,41 +19,6 @@
           </a>
         </li>
       @endforeach
-      @if(Auth::user()->role_user == "admin")
-      <li class="nav-item">
-        <a class="nav-link {{ Route::is('dashboard_admin') ? 'active' : ''}}" href="{{ route('dashboard_admin') }}">
-          <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="ni ni-tv-2 text-dark text-sm opacity-10"></i>
-          </div>
-          <span class="nav-link-text ms-1">Dashboard</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link {{ Request::is('admin/request') || Request::is('admin/request/*') ? 'active' : ''}}" href="{{ route('request') }}">
-          <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="fa fa-handshake-o text-dark text-sm opacity-10"></i>
-          </div>
-          <span class="nav-link-text ms-1">Assistance</span>
-        </a>
-      </li>
-      @elseif(Auth::user()->role_user == "volunteer")
-      <li class="nav-item">
-        <a class="nav-link {{ Route::is('dashboard_volunteer') ? 'active' : ''}}" href="{{ route('dashboard_volunteer') }}">
-          <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="ni ni-tv-2 text-dark text-sm opacity-10"></i>
-          </div>
-          <span class="nav-link-text ms-1">Dashboard</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link {{ Request::is('volunteer/assistance-requests') || Request::is('volunteer/assistance-requests/*') ? 'active' : ''}}" href="{{ route('assistance_request') }}">
-          <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="ni ni-single-copy-04 text-dark text-sm opacity-10"></i>
-          </div>
-          <span class="nav-link-text ms-1">Assistance Requests</span>
-        </a>
-      </li>
-      @endif
     </ul>
   </div>
 </aside>

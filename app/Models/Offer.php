@@ -21,7 +21,7 @@ class offer extends Model
 
   public function getAssistanceRequestAttribute()
   {
-    return mRequest::find($this->id_assistance);
+    return mRequest::find($this->id_request);
   }
 
   public function getUserAttribute()

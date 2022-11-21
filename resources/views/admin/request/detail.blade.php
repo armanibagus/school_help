@@ -13,8 +13,8 @@
   <div class="card mb-4">
     <div class="card-header pb-0">
       <h4 class="mb-3">
-        <i class="fa fa-handshake-o me-3"></i>
-        <small>Assistance Request Details</small>
+        <i class="fa fa-file-text-o me-3"></i>
+        <small>Request Details</small>
       </h4>
       <table>
         <tbody>
@@ -69,11 +69,9 @@
           <thead>
           <tr class="text-dark">
             <th width="20">No</th>
-            <th width="150">Offer Date</th>
-            <th>Remarks</th>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Occupation</th>
+            <th class="w-55">Remarks</th>
+            <th >Offer Date</th>
+            <th class="w-10">Status</th>
             <th width="100">Action</th>
           </tr>
           </thead>
@@ -81,29 +79,27 @@
           @for($i=0; $i<count($list_offers); $i++)
             @php
               $id_offer = \Illuminate\Support\Facades\Crypt::encrypt($list_offers[$i]->id_offer);
-              $year = $list_offers[$i]->user->age;
             @endphp
             <tr>
               <td>{{ $i+1 }}</td>
+              <td class="text-wrap">{{ $list_offers[$i]->ofr_remarks }}</td>
               <td>{{ $list_offers[$i]->created_at }}</td>
-              <td>{{ $list_offers[$i]->ofr_remarks }}</td>
-              <td>{{ $list_offers[$i]->user->full_name }}</td>
-              <td>{{ $year > 1 ? $year.' years old' : $year.' year old' }}</td>
-              <td>{{ $list_offers[$i]->user->occupation }}</td>
+              <td class="align-middle text-center text-sm">
+                <span class="badge badge-sm w-100 {{ $list_offers[$i]->ofr_status == 'accepted' ? 'bg-success' : 'bg-warning' }}">
+                  {{ ucwords($list_offers[$i]->ofr_status) }}
+                </span>
+              </td>
+{{--              <td>{{ $list_offers[$i]->user->full_name }}</td>--}}
+{{--              <td>{{ $year > 1 ? $year.' years old' : $year.' year old' }}</td>--}}
+{{--              <td>{{ $list_offers[$i]->user->occupation }}</td>--}}
               <td class="d-flex justify-content-evenly">
-                <a class="text-center"
-                   href="{{ route('request_accept_offer', ['id_offer' => $id_offer]) }}"
-                   data-bs-toggle="tooltip"
-                   data-bs-placement="bottom"
-                   title="Accept">
-                  <i class="fa fa-check text-success"></i>
-                </a>
-                <a class="text-center"
+                <a class="text-center btn-modal"
                    href="javascript:;"
+                   data-route="{{ route('offer_detail', ['id_offer' => $id_offer]) }}"
                    data-bs-toggle="tooltip"
                    data-bs-placement="bottom"
-                   title="Decline">
-                  <i class="fa fa-times text-danger"></i>
+                   title="View Offer Details">
+                  <i class="fa fa-file-text-o text-dark"></i>
                 </a>
               </td>
             </tr>
